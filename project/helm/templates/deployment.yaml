@@ -2,16 +2,14 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: nginx
-    tag: alpine
-  name: nginx-alpine
-  namespace: {{ .Values.namespace.name }} 
+    app: techtrends
+  name: techtrends
+  namespace: sandbox
 spec:
-  replicas: {{ .Values.replicaCount }} 
+  replicas: 1
   selector:
     matchLabels:
-      app: nginx
-      tag: alpine
+      app: techtrends
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -20,12 +18,27 @@ spec:
   template:
     metadata:
       labels:
-        app: nginx
-        tag: alpine
+        app: techtrends
     spec:
       containers:
-      - image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
-        imagePullPolicy: {{ .Values.image.pullPolicy }}
-        name: nginx-alpine
+      - image: jdubya747/techtrends:latest
+        imagePullPolicy: IfNotPresent
+        name: techtrends
+        ports:
+          - containerPort: 3111
+            protocol: TCP
+        livenessProbe:
+           httpGet:
+             path: /healthz
+             port: 3111
+        readinessProbe:
+           httpGet:
+             path: /healthz
+             port: 3111
         resources:
-{{ toYaml .Values.resources | indent 12 }}
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
