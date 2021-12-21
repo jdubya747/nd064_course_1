@@ -29,11 +29,11 @@ spec:
             protocol: TCP
         livenessProbe:
            httpGet:
-             path: /
+             path: /healthz
              port: 3111
         readinessProbe:
            httpGet:
-             path: /
+             path: /healthz
              port: 3111
         resources:
           requests:
