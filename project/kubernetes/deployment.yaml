@@ -2,16 +2,14 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: nginx
-    tag: alpine
+    app: techtrends
   name: techtrends
   namespace: sandbox
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx
-      tag: alpine
+      app: techtrends
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -20,32 +18,27 @@ spec:
   template:
     metadata:
       labels:
-        app: nginx
-        tag: alpine
+        app: techtrends
     spec:
       containers:
-      - image: techtrends:latest
+      - image: jdubya747/techtrends:latest
         imagePullPolicy: IfNotPresent
-        name: nginx-alpine
+        name: techtrends
         ports:
-          - containerPort: 31111
-        resources:
-           limits:
-              cpu: 500m
-              memory: 128mi
-           requests:
-              cpu: 250m
-              memory: 64mi
+          - containerPort: 3111
+            protocol: TCP
         livenessProbe:
-          httpGet:
-            path: /healthz
-            port: 3111
-          failureThreshold: 1
-          periodSeconds: 10
-        startupProbe:
-          httpGet:
-            path: /healthz
-            port: 3111
-          failureThreshold: 30
-          periodSeconds: 10 
-
+           httpGet:
+             path: /healthz
+             port: 3111
+        readinessProbe:
+           httpGet:
+             path: /healthz
+             port: 3111
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
