@@ -1,9 +1,9 @@
 apiVersion: v1
-name: nginx-deployment
-description: Install Nginx deployment manifests
+name: techtrends
+description: Install Techtrends deployment manifests
 keywords:
-- nginx 
+- techtrends 
 version: 1.0.0
 maintainers:
-- name: kgamanji 
-  email: kgamanji@xyz.com 
+- name: jduby747 
+  email: jdubya747@gmail.com 
