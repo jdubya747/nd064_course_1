@@ -4,10 +4,10 @@ metadata:
   labels:
     app: nginx
     tag: alpine
-  name: nginx-alpine
-  namespace: demo
+  name: techtrends
+  namespace: sandbox
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: nginx
@@ -24,6 +24,28 @@ spec:
         tag: alpine
     spec:
       containers:
-      - image: nginx:alpine
+      - image: techtrends:latest
         imagePullPolicy: IfNotPresent
         name: nginx-alpine
+        ports:
+          - containerPort: 31111
+        resources:
+           limits:
+              cpu: 500m
+              memory: 128mi
+           requests:
+              cpu: 250m
+              memory: 64mi
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 3111
+          failureThreshold: 1
+          periodSeconds: 10
+        startupProbe:
+          httpGet:
+            path: /healthz
+            port: 3111
+          failureThreshold: 30
+          periodSeconds: 10 
+
