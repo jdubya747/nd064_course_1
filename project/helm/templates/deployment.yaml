@@ -24,4 +24,7 @@ spec:
       - image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         name: techtrends
+        ports:
+        - containerPort: {{ .Values.containerPort }}
+          protocol: TCP
 
