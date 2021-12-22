@@ -15,4 +15,4 @@ spec:
     path: project/helm
     repoURL: https://github.com/jdubya747/nd064_course_1
     targetRevision: HEAD
-  syncPolicy: {}
+
