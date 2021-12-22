@@ -13,6 +13,7 @@ image:
   pullPolicy: IfNotPresent
 
 replicaCount: 1
+containerPort: 3111
 
 livenessProbe:
   httpGet:
@@ -29,5 +30,5 @@ resources:
   limits:
     cpu: 500m
     memory: 128mi
-containerPort: 3111
+
 

@@ -28,5 +28,9 @@ spec:
         - containerPort: {{ .Values.containerPort }}
           protocol: TCP
         resources:
-{{ toYaml .Values.resources | indent 10 }}
+{{ toYaml .Values.resources | indent 8 }}
+        livenessProbe:
+{{ toYaml .Values.livenessProbe | indent 8 }}  
+        readinessProbe:
+{{ toYaml .Values.readinessProbe | indent 8 }}
 
