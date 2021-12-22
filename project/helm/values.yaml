@@ -18,11 +18,11 @@ containerPort: 3111
 livenessProbe:
   httpGet:
     path: /healthz
-    port: 4111
+    port: 3111
 readinessProbe:
   httpGet:
     path: /healthz
-    port: 4111
+    port: 3111
 resources:
   requests:
     cpu: 250m
@@ -30,5 +30,3 @@ resources:
   limits:
     cpu: 500m
     memory: 128mi
-
-
