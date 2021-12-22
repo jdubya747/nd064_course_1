@@ -17,9 +17,11 @@ replicaCount: 1
 livenessProbe:
   httpGet:
     path: /healthz
+    port: 4111
 readinessProbe:
   httpGet:
     path: /healthz
+    port: 4111
 resources:
   requests:
     cpu: 250m
