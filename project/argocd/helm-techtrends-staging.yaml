@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: nginx-staging 
+  name: techtrends-staging 
   namespace: argocd
 spec:
   destination:
@@ -13,5 +13,5 @@ spec:
       valueFiles:
       - values-staging.yaml
     path: solutions/helm/nginx-deployment
-    repoURL: https://github.com/udacity/nd064_course_1
+    repoURL: https://github.com/jdubya747/nd064_course_1
     targetRevision: HEAD
